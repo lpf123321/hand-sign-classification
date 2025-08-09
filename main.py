@@ -19,9 +19,9 @@ test_transform = transforms.Compose([
     transforms.Normalize((0.5,), (0.5,))
 ])
 # 2. load data
-train_data = datasets.ImageFolder(root='/kaggle/input/hand-sign-images/Train',\
+train_data = datasets.ImageFolder(root='archive/Train',\
                                   transform=train_transform)
-test_data = datasets.ImageFolder(root='/kaggle/input/hand-sign-images/Test',\
+test_data = datasets.ImageFolder(root='archive/Test',\
                                  transform=test_transform)
 
 train_loader = DataLoader(train_data, batch_size=64, shuffle=True)
