@@ -64,14 +64,17 @@ class SimpleCNN(nn.Module):
 # 4. define loss function and optimizer
 device = torch.device("cuda")
 model = SimpleCNN(num_classes=24).to(device)
+num_epochs = 10
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.01)
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
-# 5. train
-for epoch in range(10):
+for epoch in range(num_epochs):
+    # ====== train stage ======
     model.train()
     running_loss = 0.0
-    correct_train, total_train = 0, 0
+    correct_train = 0
+    total_train = 0
+
     for images, labels in train_loader:
         images, labels = images.to(device), labels.to(device)
 
@@ -80,26 +83,29 @@ for epoch in range(10):
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
-        
+
         running_loss += loss.item()
         _, predicted = torch.max(outputs, 1)
         total_train += labels.size(0)
         correct_train += (predicted == labels).sum().item()
-        
+
     train_acc = 100 * correct_train / total_train
-    print(f"Epoch {epoch+1} "
-    f"Loss: {running_loss/len(train_loader):.4f}, \
-    Train Accuracy: {train_acc:.2f}%")
 
-# 6. test
-model.eval()
-correct, total = 0, 0
-with torch.no_grad():
-    for images, labels in test_loader:
-        images, labels = images.to(device), labels.to(device)
-        outputs = model(images)
-        _, predicted = torch.max(outputs, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
+    # ====== test stage ======
+    model.eval()
+    correct_test = 0
+    total_test = 0
+    with torch.no_grad():
+        for images, labels in test_loader:
+            images, labels = images.to(device), labels.to(device)
+            outputs = model(images)
+            _, predicted = torch.max(outputs, 1)
+            total_test += labels.size(0)
+            correct_test += (predicted == labels).sum().item()
 
-print(f"Test Accuracy: {100 * correct / total:.2f}%")
+    test_acc = 100 * correct_test / total_test
+
+    print(f"Epoch [{epoch+1}/{num_epochs}] "
+          f"Loss: {running_loss/len(train_loader):.4f} "
+          f"Train Acc: {train_acc:.2f}% "
+          f"Test Acc: {test_acc:.2f}%")
