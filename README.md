@@ -4,7 +4,6 @@
 
 This is a classifier capable of recognizing American Sign Language (ASL) letters (except **J** and **Z**) using a deep learning approach. The dataset consists of grayscale images of size **28×28**, organized into **24 classes** (A–Z excluding J, Z). The task is a multi-class classification problem.
 
----
 
 ## 2. Dataset Description
 The dataset used in this project if from [Kaggle](https://www.kaggle.com/datasets/ash2703/handsignimages).
@@ -14,7 +13,7 @@ The dataset used in this project if from [Kaggle](https://www.kaggle.com/dataset
 * **Image size:** 28×28 pixels, grayscale.
 * **Labels:** Assigned according to the folder name.
 
----
+
 
 ## 3. Data Preprocessing
 
@@ -22,7 +21,6 @@ The dataset used in this project if from [Kaggle](https://www.kaggle.com/dataset
 2. **Label encoding:** Each letter mapped to an integer index.
 3. **Conversion to tensors:** Required for PyTorch model input.
 
----
 
 ## 4. Data Augmentation
 
@@ -38,7 +36,6 @@ Augmentation methods:
 
 These augmentations help the model become more robust to variations in gesture positioning, scale, and orientation, simulating real-world variations in signing.
 
----
 
 ## 5. Model Architecture
 
@@ -51,7 +48,6 @@ A **Convolutional Neural Network (CNN)** was used:
 * **Fully Connected 1:** 128 neurons, ReLU activation
 * **Output layer:** 24 neurons (softmax for classification)
 
----
 
 ## 6. Training Details
 
@@ -61,7 +57,6 @@ A **Convolutional Neural Network (CNN)** was used:
 * **Epochs:** 10
 * **Metrics:** Accuracy on both training and test sets per epoch
 
----
 
 ## 7. Results
 
@@ -77,7 +72,6 @@ A **Convolutional Neural Network (CNN)** was used:
 | 8     | 0.0260 | 99.16         | 99.53        |
 | 9     | 0.0269 | 99.13         | 99.71        |
 
----
 
 ## 8. Accuracy Curve
 
@@ -85,7 +79,6 @@ A **Convolutional Neural Network (CNN)** was used:
 
 The graph shows a clear upward trend in accuracy, with test accuracy exceeding **99%** from epoch 4 onwards.
 
----
 
 ## 9. Discussion
 
@@ -93,13 +86,11 @@ The graph shows a clear upward trend in accuracy, with test accuracy exceeding *
 * **Overfitting prevention:** Train and test accuracy remained close, indicating minimal overfitting.
 * **Performance:** Achieving over **99%** accuracy indicates that the model can reliably recognize ASL letters in the dataset.
 
----
 
 ## 10. Conclusion
 
 The CNN-based sign language recognition system successfully achieves high accuracy on both training and test datasets. Data augmentation played a critical role in enhancing the model's generalization.
 
----
 
 ## 11. Future Work
 
