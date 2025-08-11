@@ -6,7 +6,7 @@ This is a classifier capable of recognizing American Sign Language (ASL) letters
 
 
 ## 2. Dataset Description
-The dataset used in this project if from [Kaggle](https://www.kaggle.com/datasets/ash2703/handsignimages).
+The dataset used in this project is from [Kaggle](https://www.kaggle.com/datasets/ash2703/handsignimages).
 * **Training set:** 24 folders, each containing multiple `.jpg` grayscale images.
 * **Test set:** 24 folders, structured identically to the training set.
 * **Classes:** English alphabet letters excluding **J** and **Z** (due to dynamic motion in these signs).
